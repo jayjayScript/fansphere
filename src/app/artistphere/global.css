@@ -1,0 +1,44 @@
+/* globals.css */
+/* @import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+
+body{
+  background: black;
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+  /* gap: rem; */
+}
+
+ .artist.embla__slide {
+  flex: 0 0 42%; /* Adjust '2' for more slides per view */
+  box-sizing: border-box;
+  margin: 0 8px;
+}
+
+ .card.embla__slide {
+  flex: 0 0 45%; /* Adjust '2' for more slides per view */
+  box-sizing: border-box;
+  margin: 0 8px;
+}
+
+ .latest {
+  flex: 0 0 28%; /* Adjust '2' for more slides per view */
+  box-sizing: border-box;
+ }
