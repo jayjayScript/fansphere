@@ -8,9 +8,9 @@ const Landing = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const cards = [
-    { head: "Choose a Fan Card...", text: "From Regular to VIP...", img: "img/image.png" },
-    { head: "Fan-Cards Tailored...", text: "From Regular to VIP...", img: "img/second.png" },
-    { head: "Get Closer to the Action...", text: "From Regular to VIP...", img: "img/thirdimg.png" },
+    { head: "Choose a Fan Card and Level Up Your Experience!", text: "From Regular to VIP, each card unlocks a world of perks, from live events to artist interactions.", img: "img/image.png" },
+    { head: "Get Closer to the Action and Enjoy ", text: "From Regular to VIP, each card unlocks a world of perks, from live events to artist interactions.", img: "img/second.png" },
+    { head: "Fan-Cards Tailored to Your Preference ", text: "From Regular to VIP, our Fan-Cards offer something for every level of fandom.", img: "img/thirdimg.png" },
   ];
 
   const scrollNext = useCallback(() => {
