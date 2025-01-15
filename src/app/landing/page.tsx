@@ -8,7 +8,7 @@ import Topfans from './components/Topfans'
 import Landing from './components/Landing'
 import LeftSidebar from '@/components/LeftBar'
 import NavBar from '@/components/NavBar'
-// import Footer from '@/components/Footer'
+import Footer from '@/components/Footer'
 
 const page = () => {
   return (
@@ -46,8 +46,8 @@ const page = () => {
           <LatestArtist />
           <PopularFanCard />
           <Topfans />
+          <Footer />
         </div>
-        {/* <Footer /> */}
       </div>
     </div>
   )
