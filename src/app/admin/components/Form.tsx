@@ -1,117 +1,175 @@
 "use client"
-import React, { useState } from 'react'
-import axios from 'axios';
-import img from '@/assets/pexels-steve-28574351.jpg'
-import Image from 'next/image'
+import { useState } from "react";
+import axios from "axios";
 
 const Form = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string;
+    text: string;
+    img: File | null;
+    para1: string;
+    para2: string;
+    para3: string;
+    hit: string;
+  }>({
     name: "",
-    img: "",
     text: "",
+    img: null,
     para1: "",
     para2: "",
     para3: "",
-    hitSong: "",
-    platforms: {
-      spotify: "",
-      soundCloud: "",
-      youtube: "",
-      instagram: "",
-      appleMusic: "",
-      beatport: "",
-      bandcamp: "",
-      twitter: "",
-      deezer: "",
-      audiomack: "",
-      twitch: "",
-    },
+    hit: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-    if (name.includes("platforms")) {
-      const platformKey = name.split(".")[1]
-      setFormData((prevData) => ({
-        ...prevData,
-        platforms: { ...prevData.platforms, [platformKey]: value },
-      }))
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }))
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData((prev) => ({
+        ...prev,
+        img: file,
+      }));
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await axios({
-        method: "POST",
-        url: "https://artistbackend.onrender.com/api/artists",
-        data: formData,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      alert("Celebrity added successfully!");
-      console.log("Successful", response.data)
-    } catch (error) {
-      alert("Celebrity Upload FAILED")
-      console.log("Failed", error)
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("text", formData.text);
+    if (formData.img) {
+      data.append("img", formData.img as File);
     }
-  }
+    data.append("para1", formData.para1);
+    data.append("para2", formData.para2);
+    data.append("para3", formData.para3);
+    data.append("hit", formData.hit);
+
+    await axios.post("https://artistbackend.onrender.com/api/artists", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    setFormData({
+      name: "",
+      text: "",
+      img: null,
+      para1: "",
+      para2: "",
+      para3: "",
+      hit: "",
+    });
+  };
+
   return (
-    <div className='md:max-w-[50%] m-auto'>
-      <form action="" onSubmit={handleSubmit} className='p-4 border-[#fdfdfd65] border-[1px] bg-[#15183d1c] rounded-lg my-3 grid grid-cols-2 gap-4 gap-y-7'>
-        <div className='flex flex-col'>
-          <label htmlFor="name" className='text-[#fff] font-bold'>Celebrity Name</label>
-          <input type="text" id='name' className='bg-transparent text-[#ffffff96] border-b-[1px] border-[#ffffff61] p-2 outline-none rounded-lg' />
-        </div>
-        <div className='flex flex-col'>
-          <label htmlFor="title" className='text-[#fff] font-bold'>Celebrity title</label>
-          <input type="text" id='title' className='bg-transparent text-[#ffffff96] border-b-[1px] border-[#ffffff61] p-2 outline-none rounded-lg' />
-        </div>
-        <div className='flex flex-col col-span-2'>
-          <label htmlFor="imgUrl" className='text-[#fff] font-bold flex gap-2 items-center'>Celebrity image link
-            <div className='w-[100px] h-[20px] overflow-hidden rounded-lg flex-1'>
-              <Image src={img} className='w-[300px] h-[220px] object-fill rounded-e-lg hover:scale-150 transition-all duration-300 ease-linear' alt="alt" />
-            </div>
-          </label>
-          <input type="text" id='imgUrl' className='bg-transparent text-[#ffffff96] border-b-[1px] border-[#ffffff61] p-2 outline-none rounded-lg' />
-        </div>
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white/50 p-6 shadow-md rounded-lg">
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">Add Artist</h2>
 
-        <div className='col-span-2'>
-          <h1 className='text-[#ffffff94] font-bold'>About Celebrity</h1>
-          <small className='text-[#ffffff62] text-[10px]'>celebrity description should be separeted into 3 paragraphs</small>
-          <div className='mt-3'>
-            <label htmlFor="para1" className='hidden'>.</label>
-            <textarea name="para1" id="para1" placeholder='paragraph 1' className='bg-[#ffffff0e] text-[#ffffff7c] p-2 outline-none rounded-lg w-full'></textarea>
-          </div>
-          <div>
-            <label htmlFor="para2" className='hidden'>.</label>
-            <textarea name="para2" id="para2" placeholder='paragraph 2' className='bg-[#ffffff0e] text-[#ffffff96] p-2 outline-none rounded-lg w-full'></textarea>
-          </div>
-          <div>
-            <label htmlFor="para3" className='hidden'>.</label>
-            <textarea name="para3" id="para3" placeholder='paragraph 2' className='bg-[#ffffff0e] text-[#ffffff96] p-2 outline-none rounded-lg w-full'></textarea>
-          </div>
-        </div>
+      <div className="mb-4">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Artist Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Artist Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="w-full border border-gray-300 rounded-md p-2 focus:ring-teal-400 focus:border-teal-400"
+        />
+      </div>
 
-        <div className='col-span-2'>
-          <label htmlFor="celebBest" className='text-[#fff] text-[12px] font-bold flex gap-2 items-center'>Celebrity best moments or performance</label>
-          <input type="text" id="para3" className='bg-[#ffffff0e] text-[#ffffff96] p-2 outline-none rounded-lg w-full'/>
-        </div>
+      <div className="mb-4">
+        <label htmlFor="text" className="block text-sm font-medium text-gray-700 mb-1">Text</label>
+        <input
+          type="text"
+          name="text"
+          id="text"
+          placeholder="Text"
+          value={formData.text}
+          onChange={handleChange}
+          required
+          className="w-full border border-gray-300 rounded-md p-2 focus:ring-teal-400 focus:border-teal-400"
+        />
+      </div>
 
-        <button className='bg-[#28d2fd] text-[14px] font-medium p-2 w-full col-span-2 rounded-sm'>
-          Add Celebrity
-        </button>
-      </form>
-    </div>
-  )
-}
+      <div className="mb-4">
+        <label htmlFor="img" className="block text-sm font-medium text-gray-700 mb-1">Artist Image</label>
+        <input
+          type="file"
+          name="img"
+          id="img"
+          accept="image/*"
+          onChange={handleFileChange}
+          className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+        />
+      </div>
 
-export default Form
+      <div className="mb-4">
+        <label htmlFor="para1" className="block text-sm font-medium text-gray-700 mb-1">Paragraph 1</label>
+        <textarea
+          name="para1"
+          id="para1"
+          placeholder="Paragraph 1"
+          value={formData.para1}
+          onChange={handleChange}
+          required
+          className="w-full border border-gray-300 rounded-md p-2 focus:ring-teal-400 focus:border-teal-400"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="para2" className="block text-sm font-medium text-gray-700 mb-1">Paragraph 2</label>
+        <textarea
+          name="para2"
+          id="para2"
+          placeholder="Paragraph 2"
+          value={formData.para2}
+          onChange={handleChange}
+          required
+          className="w-full border border-gray-300 rounded-md p-2 focus:ring-teal-400 focus:border-teal-400"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="para3" className="block text-sm font-medium text-gray-700 mb-1">Paragraph 3</label>
+        <textarea
+          name="para3"
+          id="para3"
+          placeholder="Paragraph 3"
+          value={formData.para3}
+          onChange={handleChange}
+          required
+          className="w-full border border-gray-300 rounded-md p-2 focus:ring-teal-400 focus:border-teal-400"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="hit" className="block text-sm font-medium text-gray-700 mb-1">Hit</label>
+        <input
+          type="text"
+          name="hit"
+          id="hit"
+          placeholder="Hit"
+          value={formData.hit}
+          onChange={handleChange}
+          required
+          className="w-full border border-gray-300 rounded-md p-2 focus:ring-teal-400 focus:border-teal-400"
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="w-full bg-teal-400 text-white py-2 px-4 rounded-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2"
+      >
+        Submit
+      </button>
+    </form>
+  );
+};
+
+export default Form;
