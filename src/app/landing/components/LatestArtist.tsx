@@ -34,17 +34,24 @@ const LatestArtist: React.FC = () => {
   const [artists, setArtists] = useState<Artist[]>([]);
   const MAX_LENGTH = 10;
 
-  useEffect(() =>{
+  useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get('https://artistbackend.onrender.com/api/artists');
-        setArtists(res.data)
+        const res = await axios.get('http://localhost:5000/api/artists');
+        console.log('Response data:', res.data);
+
+        // Access the `data` property
+        if (res.data && Array.isArray(res.data.data)) {
+          setArtists(res.data.data); // Set the array of artists
+        } else {
+          setArtists([]); // Fallback to an empty array
+        }
       } catch (error) {
-        console.error('Error fetching artists:', error)
+        console.error('Error fetching artists:', error);
       }
-    }
+    };
     fetchArtist();
-  })
+  }, []);
 
 
   return (
@@ -61,7 +68,7 @@ const LatestArtist: React.FC = () => {
         <div>
           <div className="mx-4 mb-[3rem]">
             <div className={`grid grid-cols-4 md:justify-center md:grid-cols-7 space-x-1 space-y-3`}>
-              {artists.slice(0, 8).map(artist => (
+              {artists.map(artist => (
                 <Link href={`/artists/${artist._id}`} key={artist._id}
                   className="flex-shrink-0"
                 >
@@ -69,7 +76,7 @@ const LatestArtist: React.FC = () => {
                     <Image
                       src={artist.img}
                       alt={artist.name}
-                      className="w-[70.64px] md:w-[117.83px] h-[70.64px] md:h-[117.83px] rounded-[20px] object-fill"
+                      className="w-[70.64px] md:w-[117.83px] h-[70.64px] md:h-[117.83px] rounded-[20px] object-cover"
                       width={70.64} height={70.64}
                     />
                   </div>

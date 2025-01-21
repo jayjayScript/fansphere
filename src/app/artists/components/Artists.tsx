@@ -15,19 +15,6 @@ interface Artist {
   para2: string;
   para3: string;
   hitSong: string;
-  platforms: {
-    spotify?: string;
-    soundCloud?: string;
-    youtube?: string;
-    instagram?: string;
-    appleMusic?: string;
-    beatport?: string;
-    bandcamp?: string;
-    twitter?: string;
-    deezer?: string;
-    audiomack?: string;
-    twitch?: string;
-  };
 }
 
 const ArtistsList: React.FC = () => {
@@ -35,15 +22,22 @@ const ArtistsList: React.FC = () => {
   const MAX_LENGTH = 10;
 
   useEffect(() => {
-    const fetchArtists = async () => {
-      try{
-        const res = await axios.get('https://artistbackend.onrender.com/api/artists');
-        setArtists(res.data);
+    const fetchArtist = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/api/artists');
+        console.log('Response data:', res.data);
+
+        // Access the `data` property
+        if (res.data && Array.isArray(res.data.data)) {
+          setArtists(res.data.data); // Set the array of artists
+        } else {
+          setArtists([]); // Fallback to an empty array
+        }
       } catch (error) {
-        console.error('Error fetching artists:', error)
+        console.error('Error fetching artists:', error);
       }
-    }
-    fetchArtists();
+    };
+    fetchArtist();
   }, []);
 
   return (
@@ -64,7 +58,7 @@ const ArtistsList: React.FC = () => {
                     <Image
                       src={artist.img}
                       alt={artist.name}
-                      className="w-[70.64px] md:w-[117.83px] h-[70.64px] md:h-[117.83px] rounded-[20px] object-fill"
+                      className="w-[70.64px] md:w-[117.83px] h-[70.64px] md:h-[117.83px] rounded-[20px] object-cover"
                       width={70.64} height={70.64}
                     />
                   </div>

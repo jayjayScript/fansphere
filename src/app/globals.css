@@ -16,6 +16,10 @@ body{
   background: black;
 }
 
+.no-scroll{
+  overflow: hidden;
+}
+
 .embla__viewport {
   overflow: hidden;
   width: 100%;

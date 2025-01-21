@@ -1,13 +1,14 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { Icon } from '@iconify/react';
+// import { Icon } from '@iconify/react';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import Fancard from '@/app/landing/components/Fancard';
 import LeftSidebar from '@/components/LeftBar';
 import ArtistsList from '../components/Artists';
+import NavBar from '@/components/NavBar';
 
 // import { useSearchParams } from "next/navigation";
 
@@ -19,19 +20,19 @@ interface Artist {
   para2: string;
   para3: string;
   hitSong: string;
-  platforms: {
-    spotify?: string;
-    soundCloud?: string;
-    youtube?: string;
-    instagram?: string;
-    appleMusic?: string;
-    beatport?: string;
-    bandcamp?: string;
-    twitter?: string;
-    deezer?: string;
-    audiomack?: string;
-    twitch?: string;
-  };
+  // platforms: {
+  //   spotify?: string;
+  //   soundCloud?: string;
+  //   youtube?: string;
+  //   instagram?: string;
+  //   appleMusic?: string;
+  //   beatport?: string;
+  //   bandcamp?: string;
+  //   twitter?: string;
+  //   deezer?: string;
+  //   audiomack?: string;
+  //   twitch?: string;
+  // };
   text: string;
 }
 
@@ -43,8 +44,9 @@ const ArtistProfile: React.FC = () => {
     if (id) {
       const fetchArtist = async () => {
         try {
-          const response = await axios.get(`https://artistbackend.onrender.com/api/artists/${id}`);
-          setArtist(response.data);
+          const response = await axios.get(`http://localhost:5000/api/artists/${id}`);
+          console.log(response)
+          setArtist(response.data.data);
         } catch (error) {
           console.error('Error fetching artist:', error);
         }
@@ -66,6 +68,7 @@ const ArtistProfile: React.FC = () => {
 
   return (
     <div>
+      <NavBar />
       <div className="flex-1 lg:block">
         <LeftSidebar />
       </div>
@@ -78,10 +81,9 @@ const ArtistProfile: React.FC = () => {
             <div className=''>
               <p className='text-[10px] lg:text-[12.57px] text-[#FFFFFF7A] font-normal leading-[15px]'>{artist.text}</p>
               <h1 className='text-[16px] lg:text-[20.27px] text-[#FFFFFF] font-medium leading-[24px]'>{artist.name}</h1>
-              <p className='text-[12px] lg:text-[15.2px] text-[#FFFFFF7A] leading-[15px] flex items-center'>Album <Icon icon="ph:dot-bold" className='text-[20px] lg:text-[30px]' /> 2024</p>
             </div>
-            <div>
-              <Image src={artist.img} alt={artist.name} width={80} height={80} className='rounded-[11px] lg:w-[119px] lg:h-[119px]' />
+            <div className=' h-full'>
+              <Image src={artist.img} alt={artist.name} width={140} height={160} className='rounded-[11px] lg:w-[119px] lg:h-[119px] object-cover' />
             </div>
           </header>
 
@@ -96,11 +98,11 @@ const ArtistProfile: React.FC = () => {
           </div>
 
           <div className='flex items-center gap-1'>
-            <h3 className='text-[14px] text-[#fff] font-medium leading-[24px]'>Hit song -</h3>
+            <h3 className='text-[14px] text-[#fff] font-medium leading-[24px]'>{artist.name}&apos;s Hit-</h3>
             <p className='text-[14px] text-[#FFFFFFA3] font-normal leading-[21px]'>{artist.hitSong}</p>
           </div>
 
-          <div className='mt-2'>
+          {/* <div className='mt-2'>
             <h3 className='text-[14px] text-[#fff] font-medium leading-[24px]'>Find {artist.name}</h3>
             <ul className='grid grid-cols-3 lg:w-[60%] gap-2 my-3'>
               {artist.platforms.spotify && <li className='text-[14px] text-[#191414] hover:text-[#1DB954] font-bold leading-[21px] p-2 bg-[#1DB954] hover:bg-[#191414] transition duration-400 ease-in-out rounded-md'><Link href={artist.platforms.spotify}>Spotify</Link></li>}
@@ -116,7 +118,7 @@ const ArtistProfile: React.FC = () => {
               {artist.platforms.twitter && <li className='text-[14px] text-[#1DA1F2] hover:text-[#14171A] font-bold leading-[21px] p-2 bg-[#14171A] hover:bg-[#1A91D0] transition duration-400 ease-in-out rounded-md'><Link href={artist.platforms.twitter}>Twitter</Link></li>}
 
             </ul>
-          </div>
+          </div> */}
         </section>
 
         <Fancard />
