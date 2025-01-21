@@ -50,7 +50,7 @@ const Landing = () => {
           <div className="flex items-center gap-4">
             {cards.map(({ head, text, img }, index) => (
               <div key={index} className="embla__slide flex-none w-[336px] sm:w-[400px] xl:w-[950px] h-[411px] lg:h-[522px] bg-cover bg-right p-4 py-[3rem] rounded-[20px] mx-2"
-                style={{ backgroundImage: `url(${img})` }}>
+                style={{ backgroundImage: `url(${img})`, backgroundColor: "#000000", }}>
                 <div className=" p-4 rounded-lg xl:w-[62%]">
                   <h2 className="text-[30px] xl:text-[62px] xl:leading-[70px] text-[#fff] font-bold mb-2">{head}</h2>
                   <p className="text-[#FFFFFF] text-[14px] lg:text-[18px] font-normal w-[70%]">{text}</p>

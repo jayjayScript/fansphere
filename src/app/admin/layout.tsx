@@ -1,13 +1,18 @@
 import React from 'react';
-
+import LeftSidebar from '@/components/LeftBar';
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      {children}
+    <div className='overflow-hidden md:flex'>
+       <div className="flex-1 lg:block">
+        <LeftSidebar />
+      </div>
+     <div className='flex-[4]'>
+     {children}
+     </div>
     </div>
   );
 }

@@ -1,6 +1,9 @@
+
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import ClientWrapper from "@/components/ClientWrapper";
+import { Suspense } from "react";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -33,7 +36,12 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased scroll-m-1`}
       >
-        {children}
+        <Suspense>
+          <ClientWrapper>
+            {children}
+          </ClientWrapper>
+        </Suspense>
+
       </body>
     </html>
   );
