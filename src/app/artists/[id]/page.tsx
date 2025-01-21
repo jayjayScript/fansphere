@@ -44,7 +44,7 @@ const ArtistProfile: React.FC = () => {
     if (id) {
       const fetchArtist = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/api/artists/${id}`);
+          const response = await axios.get(`https://artistbackend.onrender.com/api/artists/${id}`);
           console.log(response)
           setArtist(response.data.data);
         } catch (error) {
