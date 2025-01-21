@@ -24,7 +24,7 @@ const ArtistsList: React.FC = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/artists');
+        const res = await axios.get('https://artistbackend.onrender.com/api/artists');
         console.log('Response data:', res.data);
 
         // Access the `data` property
