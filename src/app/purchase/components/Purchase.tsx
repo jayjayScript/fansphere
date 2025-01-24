@@ -100,7 +100,7 @@ const PurchaseContent: React.FC = () => {
             </h1>
             <p className="text-[15px] lg:text-[18px] text-[#EBEBF599] font-normal leading-[20px] mt-3 md:w-[60%] xl:w-[80%]">
               With our exclusive Fan-Cards, you gain unparalleled access to your
-              favorite record label, ArtistSphere, and their incredible lineup
+              favorite record label, Celebritiesphere, and their incredible lineup
               of talent. From exclusive content to behind-the-scenes updates and more.
             </p>
           </header>

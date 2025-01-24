@@ -31,8 +31,8 @@ interface Artist {
   };
 }
 
-const Topartists = () => {
-  const [artists, setArtists] = useState<Artist[]>([])
+const TopCelebrities = () => {
+  const [Celebrities, setCelebrities] = useState<Artist[]>([])
 
   useEffect(() => {
     const fetchArtist = async () => {
@@ -42,37 +42,37 @@ const Topartists = () => {
 
         // Access the `data` property
         if (res.data && Array.isArray(res.data.data)) {
-          setArtists(res.data.data); // Set the array of artists
+          setCelebrities(res.data.data); // Set the array of Celebrities
         } else {
-          setArtists([]); // Fallback to an empty array
+          setCelebrities([]); // Fallback to an empty array
         }
       } catch (error) {
-        console.error('Error fetching artists:', error);
+        console.error('Error fetching Celebrities:', error);
       }
     };
     fetchArtist();
   }, []);
 
-  const [emblaRefArtists, emblaApiArtists] = useEmblaCarousel({
+  const [emblaRefCelebrities, emblaApiCelebrities] = useEmblaCarousel({
     loop: true, // Enables infinite scrolling
     align: 'start', // Aligns slides to the start
     skipSnaps: false, // Ensures snaps work properly
     dragFree: true,
   });
 
-  const scrollNextArtists = useCallback(() => {
-    if (emblaApiArtists) emblaApiArtists.scrollNext();
-  }, [emblaApiArtists]);
+  const scrollNextCelebrities = useCallback(() => {
+    if (emblaApiCelebrities) emblaApiCelebrities.scrollNext();
+  }, [emblaApiCelebrities]);
 
   useEffect(() => {
-    if (!emblaApiArtists) return;
+    if (!emblaApiCelebrities) return;
 
     const interval = setInterval(() => {
-      scrollNextArtists();
+      scrollNextCelebrities();
     }, 7000); // Change the interval time as needed
 
     return () => clearInterval(interval);
-  }, [emblaApiArtists, scrollNextArtists]);
+  }, [emblaApiCelebrities, scrollNextCelebrities]);
 
 
   return (
@@ -95,15 +95,15 @@ const Topartists = () => {
             </div>
           </header>
           <header className='flex justify-between items-center w-full p-4'>
-            <h2 className='text-[#FFFFFF] font-bold text-[20px]'>Top Artists</h2>
+            <h2 className='text-[#FFFFFF] font-bold text-[20px]'>Top Celebrities</h2>
             <button className='border-[1px] border-[#ffffff80] text-[#fff] text-[14px] font-medium rounded-[20px] px-4 py-1'>More</button>
           </header>
   
-          {Array.isArray(artists) && artists.length > 0 ? (
-            <div ref={emblaRefArtists} className="embla__viewport mx-4">
+          {Array.isArray(Celebrities) && Celebrities.length > 0 ? (
+            <div ref={emblaRefCelebrities} className="embla__viewport mx-4">
               <div className="embla__container flex w-full justify-between">
-                {artists.map((artist) => (
-                  <Link href={`/artists/${artist._id}`} key={artist._id} className="artist embla__slide">
+                {Celebrities.map((artist) => (
+                  <Link href={`/Celebrities/${artist._id}`} key={artist._id} className="artist embla__slide">
                     <div>
                       <Image
                         src={artist.img || '/path/to/placeholder.png'} // Fallback image
@@ -122,7 +122,7 @@ const Topartists = () => {
               </div>
             </div>
           ) : (
-            <p>No artists found.</p> // Fallback UI
+            <p>No Celebrities found.</p> // Fallback UI
           )}
         </div>
       </section>
@@ -130,4 +130,4 @@ const Topartists = () => {
   );
 }
 
-export default Topartists
+export default TopCelebrities

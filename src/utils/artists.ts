@@ -44,18 +44,18 @@ interface Artist {
   text: string;
 }
 
-const fetchArtists = async (): Promise<Artist[]> => {
+const fetchCelebrities = async (): Promise<Artist[]> => {
   try {
     const response = await axios.get('http://localhost:5000/api/artists');
     return response.data;
   } catch (error) {
-    console.error('Error fetching artists:', error);
+    console.error('Error fetching Celebrities:', error);
     return [];
   }
 };
 
 // Example usage
-fetchArtists().then((artists) => {
-  console.log('Fetched artists:', artists);
-  // You can now use the fetched artists data in your application
+fetchCelebrities().then((Celebrities) => {
+  console.log('Fetched Celebrities:', Celebrities);
+  // You can now use the fetched Celebrities data in your application
 });

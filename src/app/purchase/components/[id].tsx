@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Image from 'next/image';
 import LeftSidebar from '@/components/LeftBar';
@@ -12,6 +12,38 @@ interface Card {
 }
 
 const CardDetailPage = ({ card: { title, value, benefits, image }, onClose }: { card: Card, onClose: () => void }) => {
+
+  const openChatWidget = () => {
+    if (window.Tawk_API) {
+      window.Tawk_API.maximize(); // Open the chat widget
+    } else {
+      console.error("Tawk.to API is not available.");
+    }
+  };
+
+  // Attach event listeners to buttons
+  useEffect(() => {
+    const purchaseButton = document.getElementById("purchase-button");
+    const buyCardButton = document.getElementById("buy-card-button");
+
+    if (purchaseButton) {
+      purchaseButton.addEventListener("click", openChatWidget);
+    }
+
+    if (buyCardButton) {
+      buyCardButton.addEventListener("click", openChatWidget);
+    }
+
+    // Cleanup: Remove event listeners when the component unmounts
+    return () => {
+      if (purchaseButton) {
+        purchaseButton.removeEventListener("click", openChatWidget);
+      }
+      if (buyCardButton) {
+        buyCardButton.removeEventListener("click", openChatWidget);
+      }
+    };
+  }, []);
   return (
     <div className="overflow-hidden md:flex">
       <div className="flex-1 lg:block">
@@ -43,7 +75,7 @@ const CardDetailPage = ({ card: { title, value, benefits, image }, onClose }: { 
                 </ul>
               </div>
 
-              <button className="text-[#fff] text-[16px] bg-gradient-to-l from-[#18FFFF] to-[#9B51E0] px-3 py-3 rounded-[20px] flex items-center justify-center gap-1 mt-4 w-full">
+              <button id="buy-card-button" className="text-[#fff] text-[16px] bg-gradient-to-l from-[#18FFFF] to-[#9B51E0] px-3 py-3 rounded-[20px] flex items-center justify-center gap-1 mt-4 w-full">
                 <Icon
                   icon="solar:card-bold"
                   width="21"

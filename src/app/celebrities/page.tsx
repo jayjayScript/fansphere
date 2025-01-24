@@ -1,12 +1,12 @@
 import React from 'react';
-import Topartists from './components/Topartists';
-import ArtistsList from './components/Artists';
+import TopCelebrities from './components/TopCelebrities';
+import CelebritiesList from './components/Celebrities';
 import LeftSidebar from '@/components/LeftBar';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 
 
-const ArtistsPage: React.FC = () => {
+const CelebritiesPage: React.FC = () => {
   return (
     <div className="overflow-hidden lg:flex">
       <NavBar />
@@ -22,12 +22,12 @@ const ArtistsPage: React.FC = () => {
 
           </div>
         </div>
-        <Topartists />
-        <ArtistsList />
+        <TopCelebrities />
+        <CelebritiesList />
         <Footer />
       </div>
     </div>
   );
 };
 
-export default ArtistsPage
+export default CelebritiesPage

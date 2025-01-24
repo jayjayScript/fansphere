@@ -3,11 +3,18 @@ import withBundleAnalyzer from "@next/bundle-analyzer";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["res.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",  // Allows all paths under this domain
+      },
+    ],
   },
-  reactStrictMode: true, // Optional, add other Next.js options here
+  reactStrictMode: true,
 };
 
 export default withBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 })(nextConfig);
+

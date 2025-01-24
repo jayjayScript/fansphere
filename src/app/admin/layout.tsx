@@ -1,5 +1,6 @@
 import React from 'react';
 import LeftSidebar from '@/components/LeftBar';
+import NavBar from '@/components/NavBar';
 export default function AdminLayout({
   children,
 }: {
@@ -7,12 +8,13 @@ export default function AdminLayout({
 }) {
   return (
     <div className='overflow-hidden md:flex'>
-       <div className="flex-1 lg:block">
+      <div className="flex-1 lg:block">
         <LeftSidebar />
       </div>
-     <div className='flex-[4]'>
-     {children}
-     </div>
+      <div className='flex-[4]'>
+        <NavBar />
+        {children}
+      </div>
     </div>
   );
 }

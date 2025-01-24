@@ -14,7 +14,7 @@ const poppins = Poppins({
 const pages = [
   {
     image: '/img/launch.png',
-    text: 'Empowering Fans. Elevating Artists',
+    text: 'Empowering Fans. Elevating Celebrities',
     buttonText: 'Get started',
   },
   {
