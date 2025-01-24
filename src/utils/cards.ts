@@ -31,7 +31,7 @@ export const cards = [
     // subtitle: "Fan-card",
     value: "$999",
     benefits: [
-      "Follow all artists under the label.",
+      "Follow all Celebrities under the label.",
       "Access to premium content (private Q&As, artist shoutouts).",
       "Invitations to virtual meet-and-greets.",
     ],

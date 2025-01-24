@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useParams } from 'next/navigation';
 import Fancard from '@/app/landing/components/Fancard';
 import LeftSidebar from '@/components/LeftBar';
-import ArtistsList from '../components/Artists';
+import CelebritiesList from '../components/Celebrities';
 import NavBar from '@/components/NavBar';
 
 // import { useSearchParams } from "next/navigation";
@@ -123,7 +123,7 @@ const ArtistProfile: React.FC = () => {
 
         <Fancard />
 
-        <ArtistsList />
+        <CelebritiesList />
       </div>
 
     </div>

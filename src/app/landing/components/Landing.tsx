@@ -8,8 +8,8 @@ const Landing = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const cards = [
-    { head: "Choose a Fan Card and Level Up Your Experience!", text: "From Regular to VIP, each card unlocks a world of perks, from live events to artist interactions.", img: "img/image.png" },
-    { head: "Get Closer to the Action and Enjoy ", text: "From Regular to VIP, each card unlocks a world of perks, from live events to artist interactions.", img: "img/second.png" },
+    { head: "Choose a Fan Card and Level Up Your Experience!", text: "From Regular to VIP, each card unlocks a world of perks, from live events to celebrity interactions.", img: "img/image.png" },
+    { head: "Get Closer to the Action and Enjoy ", text: "From Regular to VIP, each card unlocks a world of perks, from live events to celebrity interactions.", img: "img/second.png" },
     { head: "Fan-Cards Tailored to Your Preference ", text: "From Regular to VIP, our Fan-Cards offer something for every level of fandom.", img: "img/thirdimg.png" },
   ];
 

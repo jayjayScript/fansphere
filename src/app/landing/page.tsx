@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Topartists from './components/Topartists'
+import TopCelebrities from './components/TopCelebrities'
 import Fancard from './components/Fancard'
-import LatestArtist from './components/LatestArtist'
+import LatestArtist from './components/LatestCelebritiest'
 import PopularFanCard from './components/PopularFanCard'
 import Topfans from './components/Topfans'
 import Landing from './components/Landing'
@@ -41,7 +41,7 @@ const page = () => {
         </div>
         <div className='flex flex-col gap-[2rem]'>
           <Landing />
-          <Topartists />
+          <TopCelebrities />
           <Fancard />
           <LatestArtist />
           <PopularFanCard />

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import unlimitedImg from '../../../assets/unlimited.png'
 import vipCardImg from '../../../assets/vipcard.png'
 import { Icon } from '@iconify/react/dist/iconify.js';
+import Link from 'next/link';
 
 const PopularFanCard: React.FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -25,7 +26,7 @@ const PopularFanCard: React.FC = () => {
     },
     {
       headText: "Join our VIP ranks today",
-      text: "Purchase a card now and get free access first hand access to all your favorite artists.",
+      text: "Purchase a card now and get free access first hand access to all your favorite Celebrities.",
       button: <button className='w-full bg-gradient-to-b from-[#844FFC] to-[#491EB8] py-[18px] px-4 rounded-2xl text-[#fff] text-[22px] font-[600] '>Get Started</button>
     },
   ]
@@ -91,11 +92,13 @@ const PopularFanCard: React.FC = () => {
           <h3 className='text-[#fff] text-[32px] lg:text-[62px] font-bold leading-[41px] lg:leading-[70px]'>
             Enjoy unlimited access. get your fan-card today!
           </h3>
-          <button className='w-full flex justify-center items-center gap-2 lg:w-[50%] bg-gradient-to-bl from-[#18FFFF] to-[#9B51E0] p-[12px] my-9 rounded-2xl text-[#fff] text-[22px] font-[600] '> <Icon
-                                icon="solar:card-bold"
-                                width="21"
-                                height="20"
-                              ></Icon>Purchase</button>
+          <Link href="/purchase">
+            <button className='w-full flex justify-center items-center gap-2 lg:w-[50%] bg-gradient-to-bl from-[#18FFFF] to-[#9B51E0] p-[12px] my-9 rounded-2xl text-[#fff] text-[22px] font-[600] '> <Icon
+              icon="solar:card-bold"
+              width="21"
+              height="20"
+            ></Icon>Purchase</button>
+          </Link>
         </div>
       </section>
     </div>

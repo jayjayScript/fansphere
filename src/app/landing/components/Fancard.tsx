@@ -51,7 +51,10 @@ const Fancard: React.FC = () => {
         <div className='overflow-x-hidden'>
           <header className='flex justify-between items-center w-full p-4'>
             <h2 className='text-[#FFFFFF] font-bold text-[20px]'>Fan-Card</h2>
-            <button className='border-[1px] border-[#ffffff80] text-[#fff] text-[14px] font-medium rounded-[20px] px-4 py-1'>See all</button>
+            <Link href="/purchase">
+              <button className='border-[1px] border-[#ffffff80] text-[#fff] text-[14px] font-medium rounded-[20px] px-4 py-1'>See all</button>
+            </Link>
+
           </header>
 
           <div ref={emblaRefCards} className="embla__viewport mx-4 mb-3">
@@ -61,13 +64,13 @@ const Fancard: React.FC = () => {
                   key={index}
                   href="/purchase"
                   className="
-          card embla__slide 
-          w-[60%] h-[65%] 
-          sm:w-[50%] sm:h-[60%] 
-          md:w-[60%]
-          lg:w-[70%] lg:h-[90%] 
-          max-w-[629px]:w-[40%] max-w-[629px]:h-[50%] flex-shrink-0
-        "
+                  card embla__slide 
+                  w-[60%] h-[65%] 
+                  sm:w-[50%] sm:h-[60%] 
+                  md:w-[60%]
+                  lg:w-[70%] lg:h-[90%] 
+                  max-w-[629px]:w-[40%] max-w-[629px]:h-[50%] flex-shrink-0
+                "
                 >
                   <div className="w-full h-full">
                     <Image src={image} alt="alt" className="w-full h-full object-cover" />
