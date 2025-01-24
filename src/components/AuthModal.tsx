@@ -34,7 +34,7 @@ const AuthModal = () => {
     setShowModal(false);
     setTimeout(() => {
       setShowModal(true);
-    }, 5000);
+    }, 20000);
   };
 
   if (session) return null; // Hide modal if user is authenticated
