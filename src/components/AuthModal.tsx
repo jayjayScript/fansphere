@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 interface AuthModalProps {
@@ -31,6 +31,13 @@ const AuthModal = ({ showModal, setShowModal }: AuthModalProps) => {
     signIn("google");
     localStorage.setItem("hasVisited", "true");
     setShowModal(false);
+  };
+
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: window.location.origin });
+    localStorage.clear(); // Clear local storage
+    setShowModal(false);
+    console.log('User signed out');
   };
 
   const handleClose = () => {
@@ -67,6 +74,14 @@ const AuthModal = ({ showModal, setShowModal }: AuthModalProps) => {
           >
             <Icon icon="flat-color-icons:google" width="30" height="30" />
             Sign In with Google
+          </button>
+
+          <button
+            onClick={handleSignOut}
+            className="bg-red-600 text-[#0e0d0d] font-semibold px-4 py-2 rounded-lg w-full flex justify-center items-center gap-2 mt-4"
+          >
+            <Icon icon="flat-color-icons:google" width="30" height="30" />
+            Sign Out
           </button>
         </div>
       </div>

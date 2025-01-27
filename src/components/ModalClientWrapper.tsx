@@ -1,8 +1,16 @@
 // components/ClientWrapper.tsx
 "use client";
 import { SessionProvider } from "next-auth/react";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import AuthModal from "./AuthModal";
 
 export default function ModalClientWrapper({ children }: { children: ReactNode }) {
-  return <SessionProvider>{children}</SessionProvider>;
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <SessionProvider>
+      {children}
+      <AuthModal showModal={showModal} setShowModal={setShowModal} />
+    </SessionProvider>
+  );
 }

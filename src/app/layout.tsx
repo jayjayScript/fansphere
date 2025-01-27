@@ -6,7 +6,6 @@ import ClientWrapper from "@/components/ClientWrapper"; // For Tawk.to
 import ModalClientWrapper from "@/components/ModalClientWrapper"; // For NextAuth.js
 import { Suspense } from "react";
 import ConditionalTawkToChat from "@/components/ConditionalTawkToChat";
-import AuthModal from "@/components/AuthModal";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -31,7 +30,6 @@ export default function RootLayout({
           <ClientWrapper>
             <ModalClientWrapper>
               {children}
-              <AuthModal showModal={true} setShowModal={() => {}} />
               <ConditionalTawkToChat />
             </ModalClientWrapper>
           </ClientWrapper>
