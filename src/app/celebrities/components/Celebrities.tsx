@@ -51,7 +51,7 @@ const CelebritiesList: React.FC = () => {
           <div className="mx-4 mb-[3rem]">
             <div className={`grid grid-cols-4 md:justify-center sm:grid-cols-6 md:grid-cols-5 lg:grid-cols-7 space-x-1 space-y-3`}>
               {Celebrities.map(artist => (
-                <Link href={`/Celebrities/${artist._id}`} key={artist._id}
+                <Link href={`/celebrities/${artist._id}`} key={artist._id}
                   className="flex-shrink-0"
                 >
                   <div>
