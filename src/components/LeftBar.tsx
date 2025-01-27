@@ -2,7 +2,7 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import LogoImg from '../assets/logo.png';
