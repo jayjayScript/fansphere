@@ -30,8 +30,8 @@ const Landing = () => {
   return (
     <div>
       <section className='lg:max-w-[99%] m-auto'>
-        <header className='w-full flex justify-end'>
-          <div className="flex items-center w-full lg:w-[40%] p-4 gap-3">
+        <header className='w-full flex'>
+          <div className="flex items-center w-[90%] sm:w-[40%] lg:w-[40%] p-4 gap-3">
             <label htmlFor="search" className="sr-only">Search</label>
             <input
               type="text"
