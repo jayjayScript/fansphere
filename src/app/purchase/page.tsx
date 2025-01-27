@@ -16,13 +16,13 @@ const PurchasePage: React.FC = () => {
           <div className='absolute -left-[200px] md:-left-[500px] top-[200px] w-[406.15px] h-[406.15px] bg-gradient-to-r from-[#FF4081] to-[#18FFFF] rounded-full -z-50 blur-[70px] md:blur-[150px]'>
 
           </div>
-          <div className='absolute -right-[120px] md:-right-[280px] top-[50px] w-[406.15px] h-[406.15px] bg-gradient-to-r from-[#9B51E0] to-[#18FFFF] rounded-full -z-50 blur-[70px] md:blur-[150px]'>
+          <div className='absolute -right-[120px] md:-right-[280px] top-[50px] w-[406.15px] h-[406.15px] bg-gradient-to-r from-[#a45ae9] to-[#18FFFF] rounded-full -z-50 blur-[70px] md:blur-[150px]'>
 
           </div>
         </div>
         <Purchase />
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };
