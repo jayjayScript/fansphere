@@ -31,7 +31,7 @@ export default function RootLayout({
           <ClientWrapper>
             <ModalClientWrapper>
               {children}
-              <AuthModal />
+              <AuthModal showModal={true} setShowModal={() => {}} />
               <ConditionalTawkToChat />
             </ModalClientWrapper>
           </ClientWrapper>
