@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
     ],
   },
   reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: "/api/auth/google",  // frontend path
+        destination: "https://artistbackend.onrender.com/api/auth/google",  // backend path
+      },
+    ];
+  },
 };
 
 export default withBundleAnalyzer({

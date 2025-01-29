@@ -14,3 +14,13 @@ interface Window {
     // Add other methods you plan to use
   };
 }
+
+declare namespace google {
+  namespace accounts {
+    namespace id {
+      interface CredentialResponse {
+        credential: string;
+      }
+    }
+  }
+}

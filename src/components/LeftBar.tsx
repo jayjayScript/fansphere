@@ -2,7 +2,6 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import LogoImg from '../assets/logo.png';
@@ -11,14 +10,19 @@ import AuthModal from './AuthModal';
 
 const LeftSidebar = () => {
   const pathname = usePathname();
-  const { data: session, status } = useSession();
   const [showModal, setShowModal] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const userToken = localStorage.getItem('userToken'); // Check if user is logged in
+    setIsAuthenticated(!!userToken);
+  }, []);
 
   const active = (path: string) => path === pathname;
 
-  const handleSignOut = async () => {
-    await signOut({ callbackUrl: window.location.origin });
-    localStorage.clear(); // Clear local storage
+  const handleSignOut = () => {
+    localStorage.removeItem('userToken'); // Clear user token
+    setIsAuthenticated(false);
     console.log('User signed out');
   };
 
@@ -26,22 +30,8 @@ const LeftSidebar = () => {
     setShowModal(true);
   };
 
-  useEffect(() => {
-    if (!session) {
-      const timer = setTimeout(() => {
-        setShowModal(true);
-      }, 120000); // 2 minutes in milliseconds
-
-      return () => clearTimeout(timer); // Clear the timer if the component unmounts or session changes
-    }
-  }, [session]);
-
-  useEffect(() => {
-    console.log('Session status:', status);
-  }, [status]);
-
   const handleButtonClick = () => {
-    if (status === 'authenticated') {
+    if (isAuthenticated) {
       handleSignOut();
     } else {
       handleSignIn();
@@ -78,8 +68,9 @@ const LeftSidebar = () => {
         onClick={handleButtonClick}
         className='bg-[#18FFFF] w-[80%] px-[40px] py-[10px] rounded-[14px] text-[18px] text-[#141414] font-medium mb-[3rem]'
       >
-        {status === 'authenticated' ? 'Log out' : 'Sign In'}
+        {isAuthenticated ? 'Log out' : 'Sign In'}
       </button>
+      
       <AuthModal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );

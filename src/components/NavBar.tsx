@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import LogoImg from '../assets/logo.png'
 import { Icon } from '@iconify/react/dist/iconify.js'
@@ -7,20 +7,40 @@ import Link from 'next/link'
 import { navLinks } from './constant'
 import { usePathname } from 'next/navigation'
 import useToggle from '@/hooks/useToogle'
-import { useSession, signOut } from "next-auth/react";
+import AuthModal from './AuthModal'
 
 const NavBar = () => {
   const [T, Tfunc] = useToggle(true)
-  const { data: session } = useSession();
+  const pathname = usePathname();
+    const [showModal, setShowModal] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
+    useEffect(() => {
+      const userToken = localStorage.getItem('userToken'); // Check if user is logged in
+      setIsAuthenticated(!!userToken);
+    }, []);
+  
+    const active = (path: string) => path === pathname;
+  
+    const handleSignOut = () => {
+      localStorage.removeItem('userToken'); // Clear user token
+      setIsAuthenticated(false);
+      console.log('User signed out');
+    };
+  
+    const handleSignIn = () => {
+      setShowModal(true);
+    };
+  
+    const handleButtonClick = () => {
+      if (isAuthenticated) {
+        handleSignOut();
+      } else {
+        handleSignIn();
+      }
+    };
 
-  const pathname = usePathname()
-  const active = (path: string) => path === pathname
 
-  const handleSignOut = () => {
-    signOut({
-      callbackUrl: window.location.origin, // Redirect after sign-out
-    });
-  };
   return (
     <div className='md:hidden'>
       <header className='flex justify-between items-center w-full p-4'>
@@ -52,16 +72,21 @@ const NavBar = () => {
         </div>
 
 
-        {
-          session ? (
-          <button onClick={handleSignOut} className='bg-[#18FFFF] w-full px-[40px] py-[10px] rounded-[14px] text-[18px] text-[#141414] font-medium mb-[3rem]'>
-            Log out
-          </button>) : (<button onClick={handleSignOut} className='bg-[#18FFFF] w-full px-[40px] py-[10px] rounded-[14px] text-[18px] text-[#141414] font-medium mb-[3rem]'>
-            Log out </button>)
-        }
+        <button
+          onClick={handleButtonClick}
+          className='bg-[#18FFFF] w-full px-[40px] py-[10px] rounded-[14px] text-[18px] text-[#141414] font-medium mb-[3rem]'
+        >
+          {isAuthenticated ? (
+          <span>Log out</span>
+        ) : (
+          <span>Sign in</span>
+        )} 
+        </button>
+        <AuthModal showModal={showModal} setShowModal={setShowModal} />
       </div>
     </div>
   )
 }
 
 export default NavBar
+
