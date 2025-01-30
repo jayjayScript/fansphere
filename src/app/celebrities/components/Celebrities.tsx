@@ -55,7 +55,6 @@ const CelebritiesList: React.FC = () => {
     };
     fetchArtist();
   }, []);
-
   return (
     <div>
       <section className='relative'>
