@@ -37,7 +37,7 @@ const TopCelebrities = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get('https://artistbackend.onrender.com/api/artists');
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
         console.log('Response data:', res.data);
 
         // Access the `data` property
@@ -103,7 +103,7 @@ const TopCelebrities = () => {
             <div ref={emblaRefCelebrities} className="embla__viewport mx-4">
               <div className="embla__container flex w-full justify-between">
                 {Celebrities.map((artist) => (
-                  <Link href={`/Celebrities/${artist._id}`} key={artist._id} className="artist embla__slide">
+                  <Link href={`/celebrities/${artist._id}`} key={artist._id} className="artist embla__slide">
                     <div>
                       <Image
                         src={artist.img || '/path/to/placeholder.png'} // Fallback image

@@ -36,7 +36,7 @@ const TopCelebrities = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get('https://artistbackend.onrender.com/api/artists');
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
         console.log('Response data:', res.data);
 
         // Access the `data` property

@@ -50,7 +50,7 @@ const AuthModal = ({ showModal, setShowModal }: AuthModalProps) => {
     const token = response.credential;
   
     try {
-      const res = await fetch("https://artistbackend.onrender.com/api/auth/google", {
+      const res = await fetch("https://fanspherebackend.vercel.app/api/auth/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

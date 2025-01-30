@@ -27,7 +27,7 @@ const ArtistProfile: React.FC = () => {
     if (id) {
       const fetchArtist = async () => {
         try {
-          const response = await axios.get(`https://artistbackend.onrender.com/api/artists/${id}`);
+          const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/${id}`);
           console.log(response)
           setArtist(response.data.data);
         } catch (error) {
@@ -92,5 +92,7 @@ const ArtistProfile: React.FC = () => {
     </div>
   );
 };
+
+
 
 export default ArtistProfile;

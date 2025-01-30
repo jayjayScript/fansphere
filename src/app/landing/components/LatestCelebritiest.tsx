@@ -37,7 +37,7 @@ const LatestArtist: React.FC = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get('https://artistbackend.onrender.com/api/artists');
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
         console.log('Response data:', res.data);
 
         // Access the `data` property
@@ -69,7 +69,7 @@ const LatestArtist: React.FC = () => {
           <div className="mx-4 mb-[3rem]">
             <div className={`grid grid-cols-4 md:justify-center md:grid-cols-7 space-x-1 space-y-3`}>
               {Celebrities.map(artist => (
-                <Link href={`/Celebrities/${artist._id}`} key={artist._id}
+                <Link href={`/celebrities/${artist._id}`} key={artist._id}
                   className="flex-shrink-0"
                 >
                   <div>

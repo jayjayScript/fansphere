@@ -47,7 +47,7 @@ const Form = () => {
     setIsLoading(true)
 
     try {
-      const response = await axios.post("https://artistbackend.onrender.com/api/artists", formData, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}`, formData, {
         headers: { "Content-Type": "application/json" },
       });
 

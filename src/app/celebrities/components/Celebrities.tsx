@@ -17,6 +17,22 @@ interface Artist {
   hitSong: string;
 }
 
+export async function getStaticProps() {  
+try {
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/artists`);
+  return {
+    props: {
+      artists: response.data.data,
+    },
+    revalidate: 60, // Revalidate the data every 60 seconds (optional)
+  };
+} catch (error) {
+  console.error("Error fetching artists:", error);
+  return { props: { artists: [] } };
+}
+}
+
+
 const CelebritiesList: React.FC = () => {
   const [Celebrities, setCelebrities] = useState<Artist[]>([]);
   const MAX_LENGTH = 10;
@@ -24,7 +40,7 @@ const CelebritiesList: React.FC = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get('https://artistbackend.onrender.com/api/artists');
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
         console.log('Response data:', res.data);
 
         // Access the `data` property
