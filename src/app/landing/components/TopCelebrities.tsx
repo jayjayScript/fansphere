@@ -88,7 +88,7 @@ const TopCelebrities = () => {
           {Array.isArray(Celebrities) && Celebrities.length > 0 ? (
             <div ref={emblaRefCelebrities} className="embla__viewport mx-4">
               <div className="embla__container flex w-full justify-between">
-                {Celebrities.map((artist) => (
+                {Celebrities.slice(0, 5).map((artist) => (
                   <Link href={`/celebrities/${artist._id}`} key={artist._id} className="artist embla__slide">
                     <div>
                       <Image
