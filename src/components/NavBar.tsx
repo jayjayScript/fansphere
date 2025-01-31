@@ -5,27 +5,28 @@ import LogoImg from '../assets/logo.png'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import Link from 'next/link'
 import { navLinks } from './constant'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import useToggle from '@/hooks/useToogle'
 import AuthModal from './AuthModal'
 
 const NavBar = () => {
   const [T, Tfunc] = useToggle(true)
   const pathname = usePathname();
+    const router = useRouter(); // Added useRouter
     const [showModal, setShowModal] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
   
     useEffect(() => {
-      const userToken = localStorage.getItem('userToken'); // Check if user is logged in
-      setIsAuthenticated(!!userToken);
+      const user = localStorage.getItem('user'); // Check if user is logged in
+      setIsAuthenticated(!!user); // Set isAuthenticated based on user data
     }, []);
   
     const active = (path: string) => path === pathname;
   
     const handleSignOut = () => {
-      localStorage.removeItem('userToken'); // Clear user token
+      localStorage.removeItem('user'); // Clear user data
       setIsAuthenticated(false);
-      window.location.href = '/';
+      router.push('/'); // Use router for navigation
       console.log('User signed out');
     };
   
