@@ -65,6 +65,7 @@ const AuthModal = ({ showModal, setShowModal }: AuthModalProps) => {
         localStorage.setItem("user", JSON.stringify(data.user));
         setUser(data.user);
         setShowModal(false);
+        window.location.reload();
       } else {
         console.error("User data not found in response");
       }
@@ -108,7 +109,7 @@ const AuthModal = ({ showModal, setShowModal }: AuthModalProps) => {
               onError={() => console.log("Login Failed")}
             />
 
-            {isLoading && <p className="animate-spin text-white">Signing In...</p>}
+            {isLoading && <p className="text-white">Signing In...</p>}
           </div>
         </div>
       </GoogleOAuthProvider>

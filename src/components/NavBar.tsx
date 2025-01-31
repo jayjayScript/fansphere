@@ -25,6 +25,7 @@ const NavBar = () => {
     const handleSignOut = () => {
       localStorage.removeItem('userToken'); // Clear user token
       setIsAuthenticated(false);
+      window.location.href = '/';
       console.log('User signed out');
     };
   

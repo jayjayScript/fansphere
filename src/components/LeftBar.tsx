@@ -1,7 +1,7 @@
 'use client';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation'; // Added useRouter
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import LogoImg from '../assets/logo.png';
@@ -10,19 +10,21 @@ import AuthModal from './AuthModal';
 
 const LeftSidebar = () => {
   const pathname = usePathname();
+  const router = useRouter(); // Added useRouter
   const [showModal, setShowModal] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const userToken = localStorage.getItem('userToken'); // Check if user is logged in
-    setIsAuthenticated(!!userToken);
+    const user = localStorage.getItem('user'); // Check if user is logged in
+    setIsAuthenticated(!!user); // Set isAuthenticated based on user data
   }, []);
 
   const active = (path: string) => path === pathname;
 
   const handleSignOut = () => {
-    localStorage.removeItem('userToken'); // Clear user token
+    localStorage.removeItem('user'); // Clear user data
     setIsAuthenticated(false);
+    router.push('/'); // Use router for navigation
     console.log('User signed out');
   };
 
@@ -68,9 +70,9 @@ const LeftSidebar = () => {
         onClick={handleButtonClick}
         className='bg-[#18FFFF] w-[80%] px-[40px] py-[10px] rounded-[14px] text-[18px] text-[#141414] font-medium mb-[3rem]'
       >
-        {isAuthenticated ? 'Log out' : 'Sign In'}
+        {isAuthenticated ? 'Log out' : 'Sign In'} {/* Fixed button text */}
       </button>
-      
+
       <AuthModal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
