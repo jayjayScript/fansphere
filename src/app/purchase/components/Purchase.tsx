@@ -80,7 +80,7 @@ const PurchaseContent: React.FC = () => {
       <section>
         <div className="p-4 xl:p-7">
           <header className="w-full flex">
-            <div className="flex items-center w-[40%] lg:w-[40%] p-4 gap-3">
+            <div className="flex items-center w-[100%] lg:w-[40%] p-4 gap-3">
               <label htmlFor="search" className="sr-only">Search</label>
               <input
                 type="text"

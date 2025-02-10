@@ -25,6 +25,7 @@ const CardDetailPage = ({ card: { title, value, benefits, image }, onClose }: { 
   useEffect(() => {
     const purchaseButton = document.getElementById("purchase-button");
     const buyCardButton = document.getElementById("buy-card-button");
+    
 
     if (purchaseButton) {
       purchaseButton.addEventListener("click", openChatWidget);

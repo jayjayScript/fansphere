@@ -15,19 +15,6 @@ interface Artist {
   para2: string;
   para3: string;
   hitSong: string;
-  platforms: {
-    spotify?: string;
-    soundCloud?: string;
-    youtube?: string;
-    instagram?: string;
-    appleMusic?: string;
-    beatport?: string;
-    bandcamp?: string;
-    twitter?: string;
-    deezer?: string;
-    audiomack?: string;
-    twitch?: string;
-  };
 }
 
 const LatestArtist: React.FC = () => {

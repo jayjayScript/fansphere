@@ -3,11 +3,17 @@ import { useState } from "react";
 import Image from "next/image";
 import img from "@/assets/pexels-steve-28574351.jpg";
 import Form from "./components/Form";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const AdminPage = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
 
   // Handle password submit
   const handlePasswordSubmit = (e: React.FormEvent) => {
@@ -39,16 +45,19 @@ const AdminPage = () => {
           </div>
         </header>
 
-        <div className="my-4">
-          <form onSubmit={handlePasswordSubmit} className="text-center">
-            <input
-              type="password"
-              className="w-[70%] p-2 my-4 rounded-md text-black"
-              placeholder="Enter admin password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit" className="bg-[#18FFFF] p-2 text-white rounded-md">
+        <div className="my-4 flex w-full justify-center">
+          <form onSubmit={handlePasswordSubmit} className="text-center w-[80%]">
+            <div className="flex items-center justify-center gap-1 bg-[#18FFFF] rounded  my-4">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="w-[100%] p-2 rounded-md text-black"
+                placeholder="Enter admin password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Icon icon={`${showPassword ? "uiw:eye-o" : "mdi:eye-off-outline"}`} width="26" height="26" className="text-[#0c0c0c] p-1 cursor-pointer" onClick={handleShowPassword}/>
+            </div>
+            <button type="submit" className="bg-[#18FFFF] p-2 text-black rounded-md w-[60%]">
               Submit
             </button>
             {error && <p className="text-red-500 mt-4">{error}</p>}
