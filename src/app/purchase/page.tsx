@@ -21,8 +21,8 @@ const PurchasePage: React.FC = () => {
           </div>
         </div>
         <Purchase />
-      </div>
       <Footer />
+      </div>
     </div>
   );
 };

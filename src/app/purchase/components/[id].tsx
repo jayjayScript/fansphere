@@ -14,10 +14,15 @@ interface Card {
 const CardDetailPage = ({ card: { title, value, benefits, image }, onClose }: { card: Card, onClose: () => void }) => {
 
   const openChatWidget = () => {
-    if (window.Tawk_API) {
-      window.Tawk_API.maximize(); // Open the chat widget
-    } else {
-      console.error("Tawk.to API is not available.");
+    if (typeof window !== "undefined") {
+      const smartsupp = (window as { smartsupp?: ((command: string) => void) | { chat?: { open?: () => void } } }).smartsupp;
+      if (typeof smartsupp === 'function') {
+        smartsupp("chat:open");
+      } else if (smartsupp?.chat?.open) {
+        smartsupp.chat.open();
+      } else {
+        console.error("Smartsupp not available or initialized");
+      }
     }
   };
 

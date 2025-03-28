@@ -43,15 +43,15 @@ const ArtistProfile: React.FC = () => {
   }, [id]);
 
   const openSupport = () => {
-    if (window.Tawk_API) {
-      window.Tawk_API.maximize(); // Open the chat widget
-      setTimeout(() => {
-        if (window.Tawk_API) {
-          window.Tawk_API.addEvent('message', { text: 'I want to make a donation' }); // Send the message
-        }
-      }, 500); // Delay to ensure the widget is fully loaded
-    } else {
-      console.error("Tawk.to API is not available.");
+    if (typeof window !== "undefined") {
+      const smartsupp = (window as { smartsupp?: ((command: string) => void) | { chat?: { open?: () => void } } }).smartsupp;
+      if (typeof smartsupp === 'function') {
+        smartsupp("chat:open");
+      } else if (smartsupp?.chat?.open) {
+        smartsupp.chat.open();
+      } else {
+        console.error("Smartsupp not available or initialized");
+      }
     }
   };
 

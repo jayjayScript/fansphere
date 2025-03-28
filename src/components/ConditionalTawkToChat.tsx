@@ -1,6 +1,8 @@
 "use client";
 import { usePathname } from "next/navigation";
-import TawkToChat from "@/components/TawkToChat";
+// import Smartsupp from "@/components/Smartsup";
+import SmartsuppChat from "@/components/Smartsup";
+
 
 const ConditionalTawkToChat = () => {
   const pathname = usePathname();
@@ -10,7 +12,7 @@ const ConditionalTawkToChat = () => {
     return null;
   }
 
-  return <TawkToChat />;
+  return <SmartsuppChat />;
 };
 
 export default ConditionalTawkToChat;
