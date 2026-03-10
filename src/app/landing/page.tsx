@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TopCelebrities from './components/TopCelebrities'
+// import TopCelebrities from './components/TopCelebrities'
 import Fancard from './components/Fancard'
 import LatestArtist from './components/LatestCelebritiest'
 import PopularFanCard from './components/PopularFanCard'
