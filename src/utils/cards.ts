@@ -11,7 +11,7 @@ export const cards = [
       "Access to basic content and public events.",
       "Participation in polls and competitions.",
     ],
-    image: "/img/regular-card.png", // Example image path
+    image: "/img/regular-card.jpg", // Example image path
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const cards = [
       "Priority voting rights in polls.",
       "Discounts in the merch store.",
     ],
-    image: "/img/prime-card.png", // Example image path
+    image: "/img/prime-card.jpg", // Example image path
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ export const cards = [
       "Access to premium content (private Q&As, artist shoutouts).",
       "Invitations to virtual meet-and-greets.",
     ],
-    image: "/img/premium-card.png", // Example image path
+    image: "/img/premium-card.jpg", // Example image path
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ export const cards = [
       "Personalized artist shoutouts.",
       "Limited-edition collectibles and free merch gifts.",
     ],
-    image: "/img/vip-card.png", // Example image path
+    image: "/img/vip-card.jpg", // Example image path
   },
   // Add more card objects as needed
 ];

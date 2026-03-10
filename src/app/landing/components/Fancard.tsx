@@ -2,10 +2,10 @@
 import React, { useEffect, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
-import regular from '../../../assets/regular.png'
-import prime from '../../../assets/prime.png'
-import premium from '../../../assets/premium.png'
-import vip from '../../../assets/vip.png'
+import regular from '../../../assets/regular.jpg'
+import prime from '../../../assets/prime.jpg'
+import premium from '../../../assets/premium.jpg'
+import vip from '../../../assets/vip.jpg'
 import Link from 'next/link';
 
 const Fancard: React.FC = () => {
@@ -73,7 +73,7 @@ const Fancard: React.FC = () => {
                 "
                 >
                   <div className="w-full h-full">
-                    <Image src={image} alt="alt" className="w-full h-full object-cover" />
+                    <Image src={image} alt="alt" className="rounded-3xl w-full h-full object-cover" />
                   </div>
                 </Link>
               ))}

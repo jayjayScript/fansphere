@@ -4,10 +4,10 @@ import React, { Suspense } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import searchIcon from "@iconify/icons-mdi/magnify";
 import Image, { StaticImageData } from "next/image";
-import regular from "../../../assets/regular.png";
-import prime from "../../../assets/prime.png";
-import premium from "../../../assets/premium.png";
-import vip from "../../../assets/vip.png";
+import regular from "../../../assets/regular.jpg";
+import prime from "../../../assets/prime.jpg";
+import premium from "../../../assets/premium.jpg";
+import vip from "../../../assets/vip.jpg";
 import CardDetailPage from "./[id]";
 import { cards } from "@/utils/cards";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -34,7 +34,7 @@ const FanCards: React.FC<FanCardsProps> = ({ fanCards, onCardClick }) => {
           <div>
             <Image
               src={image}
-              className="w-[172.55px] lg:w-[282.55px] h-[270.91px] lg:h-[330px] object-contain"
+              className="w-[172.55px] lg:w-[282.55px] h-[270.91px] lg:h-[330px] object-contain rounded-3xl"
               alt={`${rank} Fan-card`}
             />
           </div>

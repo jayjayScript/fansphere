@@ -63,7 +63,7 @@ const CardDetailPage = ({ card: { title, value, benefits, image }, onClose }: { 
 
           <div className='sm:flex items-center'>
             <div className='w-full lg:w-[70%] h-full flex-[2]'>
-              <Image src={image} alt="alt" width={507} height={251} />
+              <Image src={image} alt="alt" width={407} height={251} className='rounded-3xl' />
             </div>
 
             <div className='flex-1 w-full'>
