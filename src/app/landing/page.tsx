@@ -41,7 +41,7 @@ const page = () => {
         </div>
         <div className='flex flex-col gap-[2rem]'>
           <Landing />
-          <TopCelebrities />
+          {/* <TopCelebrities /> */}
           <Fancard />
           <LatestArtist />
           <PopularFanCard />
