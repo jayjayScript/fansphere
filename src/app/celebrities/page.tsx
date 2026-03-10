@@ -1,5 +1,5 @@
 import React from 'react';
-import TopCelebrities from './components/TopCelebrities';
+// import TopCelebrities from './components/TopCelebrities';
 import CelebritiesList from './components/Celebrities';
 import LeftSidebar from '@/components/LeftBar';
 import NavBar from '@/components/NavBar';
@@ -22,7 +22,7 @@ const CelebritiesPage: React.FC = () => {
 
           </div>
         </div>
-        <TopCelebrities />
+        {/* <TopCelebrities /> */}
         <CelebritiesList />
         <Footer />
       </div>
