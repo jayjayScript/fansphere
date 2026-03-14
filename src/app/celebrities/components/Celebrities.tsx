@@ -20,6 +20,7 @@ interface Artist {
 const CelebritiesList: React.FC = () => {
   const [celebrities, setCelebrities] = useState<Artist[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchArtist = async () => {
@@ -40,17 +41,37 @@ const CelebritiesList: React.FC = () => {
     fetchArtist();
   }, []);
 
+  const filteredCelebrities = celebrities.filter(artist =>
+    artist.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
       <section className='relative'>
-        <header className='flex justify-between items-center w-full p-4 pt-6'>
+        <header className='flex flex-col md:flex-row justify-between items-start md:items-center w-full p-4 pt-6 gap-4'>
           <div>
             <h2 className='text-[#FFFFFF] font-bold text-[20px]'>Celebrities</h2>
-            <p className="text-white/40 text-xs mt-0.5">{celebrities.length} artists</p>
+            <p className="text-white/40 text-xs mt-0.5">{filteredCelebrities.length} artists</p>
           </div>
-          <div className="flex items-center gap-1 text-white/40 text-xs">
-            <Icon icon="mdi:account-group" width={14} />
-            Fan Club Community
+          <div className='flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto'>
+            <div className="relative w-full md:w-64">
+              <input
+                type="text"
+                placeholder="Search celebrities..."
+                className="w-full bg-white/5 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-white text-sm focus:outline-none focus:border-[#18FFFF]/50 transition-colors"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <Icon 
+                icon="mdi:magnify" 
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" 
+                width={18} 
+              />
+            </div>
+            <div className="flex items-center gap-1 text-white/40 text-xs shrink-0">
+              <Icon icon="mdi:account-group" width={14} />
+              Fan Club Community
+            </div>
           </div>
         </header>
 
@@ -59,9 +80,9 @@ const CelebritiesList: React.FC = () => {
             <div className="flex justify-center items-center py-16">
               <Icon icon="mdi:loading" className="animate-spin text-[#18FFFF]" width={36} />
             </div>
-          ) : (
+          ) : filteredCelebrities.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
-              {celebrities.map(artist => (
+              {filteredCelebrities.map(artist => (
                 <Link
                   href={`/celebrities/${artist._id}`}
                   key={artist._id}
@@ -105,6 +126,12 @@ const CelebritiesList: React.FC = () => {
                   </div>
                 </Link>
               ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-20 text-white/40">
+              <Icon icon="mdi:account-search" width={48} className="mb-4" />
+              <p className="text-lg font-medium">No celebrities found</p>
+              <p className="text-sm">Try adjusting your search query</p>
             </div>
           )}
         </div>

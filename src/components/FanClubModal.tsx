@@ -23,7 +23,7 @@ interface FormData {
   q4_wantConversation: "yes" | "no" | "";
 }
 
-type ModalState = "form" | "success" | "support";
+type ModalState = "form" | "success" | "support" | "duplicate";
 type SmartsuppWindow = Window & { smartsupp?: (...args: unknown[]) => void };
 
 const FanClubModal: React.FC<FanClubModalProps> = ({
@@ -142,12 +142,11 @@ const FanClubModal: React.FC<FanClubModalProps> = ({
       }
     } catch (err: unknown) {
       if (axios.isAxiosError(err) && err.response) {
+        setModalState("duplicate");
         toast.error(err.response.data.message || "Something went wrong.");
       } else {
         toast.error("Something went wrong. Please try again.");
       }
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -249,6 +248,34 @@ const FanClubModal: React.FC<FanClubModalProps> = ({
                 className="mt-2 bg-[#18FFFF] text-black font-semibold py-2.5 px-8 rounded-xl hover:bg-[#00e5e5] transition-colors"
               >
                 Awesome!
+              </button>
+            </div>
+          )}
+
+          {modalState === "duplicate" && (
+            <div className="flex flex-col items-center text-center py-6 gap-4">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#FF4081]/20 to-[#FF4081]/5 border border-[#FF4081]/30 flex items-center justify-center">
+                <Icon
+                  icon="mdi:account-alert"
+                  width={48}
+                  height={48}
+                  className="text-[#FF4081]"
+                />
+              </div>
+              <h3 className="text-white text-xl font-bold">
+                Already a Member!
+              </h3>
+              <p className="text-white/60 text-sm">
+                Looks like{" "}
+                <span className="text-white font-medium">{formData.email}</span>{" "}
+                has already joined {artistName}&apos;s fan club. Each email can
+                only be used once.
+              </p>
+              <button
+                onClick={handleClose}
+                className="mt-2 bg-[#FF4081] text-white font-semibold py-2.5 px-8 rounded-xl hover:opacity-90 transition-opacity"
+              >
+                Got it
               </button>
             </div>
           )}
