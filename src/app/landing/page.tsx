@@ -4,7 +4,7 @@ import React from 'react'
 import Fancard from './components/Fancard'
 import LatestArtist from './components/LatestCelebritiest'
 import PopularFanCard from './components/PopularFanCard'
-import Topfans from './components/Topfans'
+import CelebrityFanCarousel from './components/CelebrityFanCarousel'
 import Landing from './components/Landing'
 import LeftSidebar from '@/components/LeftBar'
 import NavBar from '@/components/NavBar'
@@ -12,43 +12,29 @@ import Footer from '@/components/Footer'
 
 const page = () => {
   return (
-    <div className="overflow-hidden md:flex">
+    <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
       <NavBar />
-      <div className="flex-1 lg:block">
-        <LeftSidebar />
-      </div>
-      <div className='lg:max-w-[75%] flex-[4] md:pt-10 relative'>
-        <div className='md:absolute left-[800px] top-[80px]'>
-          <div className='absolute -left-[200px] md:-left-[500px] top-[200px] w-[406.15px] h-[406.15px] bg-gradient-to-r from-[#FF4081] to-[#18FFFF] rounded-full -z-50 blur-[70px] md:blur-[150px]'>
-
+      <LeftSidebar />
+      
+      <main className="lg:pl-[251px] xl:pl-[346px] transition-all duration-300">
+        <div className='relative min-h-screen'>
+          {/* Background Glows - Responsive Positioning */}
+          <div className='absolute top-0 right-0 w-full h-full pointer-events-none -z-10 overflow-hidden'>
+            <div className='absolute top-[10%] -right-[150px] md:-right-[200px] w-[500px] h-[500px] bg-gradient-to-r from-[#FF4081] to-[#18FFFF] rounded-full blur-[100px] md:blur-[150px] opacity-40' />
+            <div className='absolute top-[40%] -left-[150px] md:-left-[200px] w-[500px] h-[500px] bg-gradient-to-r from-[#9B51E0] to-[#18FFFF] rounded-full blur-[100px] md:blur-[150px] opacity-40' />
+            <div className='absolute bottom-[10%] right-[10%] w-[600px] h-[600px] bg-gradient-to-r from-[#FF4081]/30 to-[#18FFFF]/30 rounded-full blur-[120px] opacity-30' />
           </div>
-          <div className='absolute -right-[120px] md:-right-[280px] top-[50px] w-[406.15px] h-[406.15px] bg-gradient-to-r from-[#9B51E0] to-[#18FFFF] rounded-full -z-50 blur-[70px] md:blur-[150px]'>
 
-          </div>
-        </div>
-
-        <div className='absolute -left-[250px] md:left-[400px] top-[960px] w-[506.15px] h-[506.15px] bg-gradient-to-r from-[#FF4081] to-[#18FFFF] rounded-full -z-50 blur-[80px] opacity-60'>
-
-        </div>
-
-        <div className='absolute bottom-[1100px] md:bottom-[1900px] left-[200px] md:left-[800px] opacity-60 -z-50'>
-          <div className='absolute -left-[500px] top-[200px] w-[406.15px] h-[406.15px] bg-gradient-to-r from-[#FF4081] to-[#18FFFF] rounded-full -z-50 blur-[80px]'>
-
-          </div>
-          <div className='absolute -right-[290px] top-[50px] w-[406.15px] h-[406.15px] bg-gradient-to-r from-[#9B51E0] to-[#18FFFF] rounded-full -z-50 blur-[80px]'>
-
+          <div className='flex flex-col gap-8 pb-10'>
+            <Landing />
+            <Fancard />
+            <LatestArtist />
+            <PopularFanCard />
+            <CelebrityFanCarousel />
+            <Footer />
           </div>
         </div>
-        <div className='flex flex-col gap-[2rem]'>
-          <Landing />
-          {/* <TopCelebrities /> */}
-          <Fancard />
-          <LatestArtist />
-          <PopularFanCard />
-          <Topfans />
-          <Footer />
-        </div>
-      </div>
+      </main>
     </div>
   )
 }

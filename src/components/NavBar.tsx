@@ -44,7 +44,7 @@ const NavBar = () => {
 
 
   return (
-    <div className='md:hidden'>
+    <div className='lg:hidden'>
       <header className='flex justify-between items-center w-full p-4'>
         <div>
           <Image src={LogoImg} className='w-[200px]' alt="alt" />

@@ -41,7 +41,7 @@ const LeftSidebar = () => {
   };
 
   return (
-    <div className='hidden lg:flex flex-col justify-between py-10 pl-14 h-screen w-[251px] xl:w-[376px] fixed left-0 top-0 z-50 bg-black'>
+    <div className='hidden lg:flex flex-col justify-between py-10 pl-14 h-screen w-[251px] xl:w-[346px] fixed left-0 top-0 z-50 bg-black'>
       <div>
         <Link href='/' className='logo flex gap-2 mb-[5rem]'>
           <div>
